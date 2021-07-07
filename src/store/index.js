@@ -18,18 +18,8 @@ const composeEnhancers =
       })
     : compose;
 
-const enhancer = composeEnhancers(
-  applyMiddleware(thunk)
-  // other store enhancers if any
-);
+const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-// const store = createStore(
-//   rootReducer,
-//   compose(
-//     applyMiddleware(thunk),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-//   )
-// );
 const store = createStore(rootReducer, enhancer);
 
 export default store;

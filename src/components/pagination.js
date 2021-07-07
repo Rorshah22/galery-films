@@ -10,7 +10,7 @@ const Pagination = () => {
 
   const pagesCount = 15;
   const pages = [];
-  console.log(currentPage);
+
   createPages(pages, pagesCount, currentPage);
 
   useEffect(() => {
