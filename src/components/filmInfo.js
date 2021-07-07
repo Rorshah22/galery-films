@@ -1,26 +1,28 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import noImage from '../images/content/unnamed.jpg';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Preloader from './preloader';
 
-const FilmInfo = ({ image, title, vote, date }) => {
-  const params = useParams();
-  console.log(params);
+const FilmInfo = () => {
+  const { id } = useParams();
+  const { data, isLoaded } = useSelector((state) => state.gallery);
+  // const { genres } = useSelector((state) => state.genres);
 
-  const { gallery } = useSelector((state) => state.gallery);
-  const { genres } = useSelector((state) => state.genres);
-  console.log(gallery);
+  let info = data.find((item) => item.id === +id);
 
+  console.log(info);
   let linkImage = '';
-  if (image !== null) {
-    linkImage = `https://image.tmdb.org/t/p/w200${image}`;
+  if (info.poster_path !== null) {
+    linkImage = `https://image.tmdb.org/t/p/w200${info.poster_path}`;
   } else {
     linkImage = noImage;
   }
-  return (
+  const element = (
     <div className="info-page">
-      <img className="poster" src={linkImage} alt="poster ${title}" />
+      <img className="poster" src={linkImage} alt="poster " />
       <div className="info-film">
-        <h2>{title}</h2>
+        <h2>title</h2>
         <p>overview</p>
         <span>
           <b>Genres: </b> allGenres
@@ -40,6 +42,8 @@ const FilmInfo = ({ image, title, vote, date }) => {
       </div>
     </div>
   );
+
+  return isLoaded ? <Preloader /> : element;
 };
 
 export default FilmInfo;

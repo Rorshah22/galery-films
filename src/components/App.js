@@ -1,20 +1,26 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import Preloader from './preloader';
+import { loadGallery } from '../store/actions';
 import Header from './header';
 import Main from './main';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="container">
-        {/* <!-- Прелоадер --> */}
-        {/* <Preloader /> */}
-        <Header />
-        <Main />
-      </div>
-    );
-  }
-}
+const App = () => {
+  const dispatch = useDispatch();
+
+  const { currentPage } = useSelector((state) => state.page);
+  const { sort } = useSelector((state) => state.sort);
+
+  useEffect(() => {
+    dispatch(loadGallery(currentPage, sort));
+  }, [currentPage, sort, dispatch]);
+
+  return (
+    <div className="container">
+      <Header />
+      <Main />
+    </div>
+  );
+};
 
 export default App;
