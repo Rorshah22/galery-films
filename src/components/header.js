@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom';
+
 function Header() {
   return (
     <header className="header">
-      <a href="./index.html" className="home-page">
+      <Link to="/" className="home-page">
         {' '}
-      </a>
+      </Link>
       <span className="user-name"></span>
-      <a href="./auth.html" className="sign">
+      <Link to="/auth" className="sign">
         Sign in/Sign up
-      </a>
+      </Link>
     </header>
   );
 }

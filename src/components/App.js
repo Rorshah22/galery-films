@@ -3,7 +3,6 @@ import { Component } from 'react';
 // import Preloader from './preloader';
 import Header from './header';
 import Main from './main';
-import Pagination from './pagination';
 
 class App extends Component {
   render() {
@@ -13,7 +12,6 @@ class App extends Component {
         {/* <Preloader /> */}
         <Header />
         <Main />
-        <Pagination />
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+
 import { setPage } from '../store/actions';
-import { loadGallery } from '../store/actions';
 import { createPages } from './pageCreator';
 
 const Pagination = () => {
@@ -13,18 +12,34 @@ const Pagination = () => {
 
   createPages(pages, pagesCount, currentPage);
 
-  useEffect(() => {
-    dispatch(loadGallery(currentPage));
-  }, [currentPage, dispatch]);
+  // заглушка пагинации
+  const startArr = ['start', 'prev'];
+  const endArr = ['end', 'next'];
+  const newPages = startArr.concat(pages, endArr);
+  const classStyle = (currentPage, page) => {
+    if (page === 'start') {
+      return 'page-btn start-page';
+    }
+    if (page === 'prev') {
+      return 'page-btn prev-page';
+    }
+    if (page === 'end') {
+      return 'page-btn end-page';
+    }
+    if (page === 'next') {
+      return 'page-btn next-page';
+    }
+
+    return currentPage === page ? 'page-btn active' : 'page-btn';
+  };
 
   return (
     <div className="pagination-buttons">
-      {pages.map((page, index) => {
+      {newPages.map((page, index) => {
         return (
           <button
             key={index}
-            className={+currentPage === page ? 'page-btn active' : 'page-btn'}
-            // onClick={handleClick}
+            className={classStyle(currentPage, page)}
             onClick={() => dispatch(setPage(page))}
           >
             {page}

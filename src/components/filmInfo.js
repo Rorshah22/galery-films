@@ -1,40 +1,41 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadGenres } from '../store/actions';
+import { useSelector } from 'react-redux';
+import noImage from '../images/content/unnamed.jpg';
+import { useParams } from 'react-router-dom';
 
-const FilmInfo = () => {
-  const dispatch = useDispatch();
+const FilmInfo = ({ image, title, vote, date }) => {
+  const params = useParams();
+  console.log(params);
+
+  const { gallery } = useSelector((state) => state.gallery);
   const { genres } = useSelector((state) => state.genres);
+  console.log(gallery);
 
-  useEffect(() => {
-    dispatch(loadGenres());
-  }, [dispatch]);
-  console.log(genres[0].map((item) => console.log(item.id)));
+  let linkImage = '';
+  if (image !== null) {
+    linkImage = `https://image.tmdb.org/t/p/w200${image}`;
+  } else {
+    linkImage = noImage;
+  }
   return (
     <div className="info-page">
-      <img
-        class="poster"
-        src="https://image.tmdb.org/t/p/w500${poster_path}"
-        onError="this.src='../images/content/unnamed.jpg'"
-        alt="poster ${title}"
-      />
+      <img className="poster" src={linkImage} alt="poster ${title}" />
       <div className="info-film">
-        <h2>${title}</h2>
-        <p>${overview}</p>
+        <h2>{title}</h2>
+        <p>overview</p>
         <span>
-          <b>Genres: </b> ${allGenres}
+          <b>Genres: </b> allGenres
         </span>
         <span>
-          <b>Vote average:</b> ${vote_average}
+          <b>Vote average:</b> vote_average
         </span>
         <span>
-          <b>Vote count:</b> ${vote_count}
+          <b>Vote count:</b> vote_count
         </span>
         <span>
-          <b>Popularity,:</b> ${popularity}
+          <b>Popularity,:</b> popularity
         </span>
         <span>
-          <b>Release date:</b> ${release_date}
+          <b>Release date:</b> release_date
         </span>
       </div>
     </div>

@@ -4,12 +4,18 @@ import {
   IS_LOADING_GENRES,
   LOAD_GENRES,
   PAGE,
+  SORT,
 } from '../constants';
 import { getGallery, getGenres } from '../../services';
 
 export const setPage = (page) => ({
   type: PAGE,
   payload: page,
+});
+
+export const setSort = (value) => ({
+  type: SORT,
+  payload: value,
 });
 
 export const setIsLoadingGallery = (value) => ({
@@ -22,9 +28,9 @@ export const setIsLoadingGenres = (value) => ({
   payload: value,
 });
 
-export const loadGallery = (page) => (dispatch) => {
+export const loadGallery = (page, sort) => (dispatch) => {
   dispatch(setIsLoadingGallery(true));
-  getGallery(page)
+  getGallery(page, sort)
     .then((data) => {
       dispatch({ type: LOAD_GALLERY, payload: data.results });
     })
