@@ -1,4 +1,5 @@
 // import { useSelector } from 'react-redux';
+
 import { useEffect } from 'react';
 import noImage from '../images/content/unnamed.jpg';
 import { useParams } from 'react-router-dom';
@@ -30,6 +31,7 @@ const FilmInfo = () => {
 
   for (let j = 0; j < info.genre_ids.length; j++) {
     const element = info.genre_ids[j];
+    // eslint-disable-next-line
     genre.find((item) => {
       if (element === item.id) {
         arrGenres.push(item.name);

@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const users = require('../dummy_data/users.json');
+// const users = require('../dummy_data/users.json');
 
 const Registration = () => {
   const { handleChange, handleSubmit, values, touched, errors } = useFormik({
