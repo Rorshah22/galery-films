@@ -22,7 +22,9 @@ const Authentication = () => {
       const mail = values.email;
       const pass = values.password;
 
-      const res = users.find((item) => item.email === mail);
+      const res = users.map(
+        (item) => item.email === mail && item.password === pass
+      );
       console.log(res);
     },
   });
