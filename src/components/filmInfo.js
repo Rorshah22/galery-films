@@ -10,6 +10,7 @@ import Preloader from './preloader';
 const FilmInfo = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(loadGenres());
   }, [dispatch]);
@@ -29,9 +30,9 @@ const FilmInfo = () => {
 
   for (let j = 0; j < info.genre_ids.length; j++) {
     const element = info.genre_ids[j];
-    genre.map((item) => {
+    genre.find((item) => {
       if (element === item.id) {
-        return arrGenres.push(item.name);
+        arrGenres.push(item.name);
       }
     });
   }

@@ -3,6 +3,7 @@ import genresReducer from './reducers/genresReducer';
 import galleryReducer from './reducers/galleryReducer';
 import pageReducer from './reducers/pageReducer';
 import sortFilmReducer from './reducers/sortFilmReducer';
+import authReducer from './reducers/authReducer';
 
 import thunk from 'redux-thunk';
 
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   gallery: galleryReducer,
   page: pageReducer,
   sort: sortFilmReducer,
+  auth: authReducer,
 });
 
 const composeEnhancers =

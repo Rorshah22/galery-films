@@ -5,8 +5,33 @@ import {
   LOAD_GENRES,
   PAGE,
   SORT,
+  LOGIN,
+  PASSWORD,
+  IS_AUTHENTICATION,
+  IS_ADMIN,
 } from '../constants';
+
 import { getGallery, getGenres } from '../../services';
+
+export const isAuth = (value) => ({
+  type: IS_AUTHENTICATION,
+  payload: value,
+});
+
+export const isAdmin = (value) => ({
+  type: IS_ADMIN,
+  payload: value,
+});
+
+export const setLogin = (value) => ({
+  type: LOGIN,
+  payload: value,
+});
+
+export const setPassword = (value) => ({
+  type: PASSWORD,
+  payload: value,
+});
 
 export const setPage = (page) => ({
   type: PAGE,

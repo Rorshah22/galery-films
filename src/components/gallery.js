@@ -6,6 +6,7 @@ import Film from './film';
 
 const Gallery = () => {
   const { data, isLoaded } = useSelector((state) => state.gallery);
+  // const { isAdmin, isAuth } = useSelector((state) => state.auth);
 
   const element = data.map((item) => {
     return <Film key={item.id} item={item} />;
