@@ -8,10 +8,9 @@ const ChangeRating = () => {
   const handleChange = (e) => {
     dispatch(setSort(e.target.value));
     dispatch(setPage(1));
-    console.log(sort);
   };
   return (
-    <select className="select" onClick={handleChange}>
+    <select className="select" onChange={handleChange} value={sort}>
       <option value="popularity.desc" defaultValue>
         none
       </option>
