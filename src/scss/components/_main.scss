@@ -81,6 +81,9 @@ main {
 .poster {
 	max-width: 300px;
 	height: fit-content;
+	&:hover {
+		transform: rotateX(10deg);
+	}
 }
 
 // стили для add-film
