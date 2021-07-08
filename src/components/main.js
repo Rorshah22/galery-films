@@ -9,9 +9,10 @@ import NotFound from './notfound';
 import AddFilm from './addFilm';
 import Authentication from './authentication';
 import Registration from './registration';
+import PrivateRouter from './PrivateRoute/PrivateRoute';
 
 const Main = () => {
-  const { isAuth } = useSelector((state) => state.auth);
+  const { isAdmin } = useSelector((state) => state.auth);
   return (
     <main>
       <Switch>
@@ -24,9 +25,9 @@ const Main = () => {
         <Route path="/movie/:id" exact>
           <FilmInfo />
         </Route>
-        <Route path="/admin" exact isAuth={isAuth}>
+        <PrivateRouter path="/add_film" exact isAdmin={isAdmin}>
           <AddFilm />
-        </Route>
+        </PrivateRouter>
         <Route path="/auth">
           <Authentication />
         </Route>

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { setSort, setPage } from '../store/actions';
 
 const ChangeRating = () => {
@@ -23,7 +24,7 @@ const ChangeRating = () => {
         </option>
         <option value="release_date.asc">Release Date Ascending &#8593;</option>
       </select>
-      {isAdmin ? <button className="btn-add"></button> : null}
+      {isAdmin ? <Link className="btn-add" to="/add_film"></Link> : null}
     </section>
   );
 };

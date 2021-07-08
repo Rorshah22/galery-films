@@ -1,35 +1,49 @@
-import { Redirect } from 'react-router-dom';
-// import { isAuth } from '../store/actions';
-import { useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { setAddFilm } from '../store/actions';
 
 const AddFilm = () => {
-  const { isAdmin } = useSelector((state) => state.auth);
-  return isAdmin ? <div>ladd film</div> : <Redirect to="/auth" />;
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      adult: false,
+      backdrop_path: '',
+      id: null,
+      original_language: 'en',
+      original_title: '',
+      popularity: null,
+      poster_path: '',
+      release_date: '',
+      title: '',
+      video: false,
+      vote_average: null,
+      vote_count: null,
+    },
+    onSubmit: (values) => {
+      dispatch(setAddFilm(values));
+      alert('fd');
+    },
+  });
+  return (
+    <div className="modal_block">
+      <form className="add-film" onSubmit={formik.handleSubmit}>
+        <input type="text" placeholder="title" required />
+        <textarea name="" id="" rows="4" placeholder="overview" required />
+        <input type="text" placeholder="poster_path" required />
+        <input type="number" placeholder="popularity" required />
+        <input type="date" placeholder="release_date" required />
+        <select id="genres" multiple></select>
+        <input type="number" placeholder="vote_average" required />
+        <input type="number" placeholder="vote_count" required />
+        <input type="checkbox" id="adult" checked />
+        <label for="adult">Adult</label>
+        <div className="btn-action">
+          <input type="submit" value="Add" />
+          <input type="reset" value="Clear" />
+        </div>
+      </form>
+    </div>
+  );
 };
-//  {
-// const { isAuth } = useSelector((state) => state.auth);
-// isAuth ? <div>ladd film</div> : <Redirect to="/" />;
-// return <div>dsadasdasdasdasdasdasdasdasd</div>;
-// };
-
 export default AddFilm;
-
-//   <form action="" class='add-film'>
-//   <input type="text" placeholder="title" minlength=3 required>
-//   <textarea name="" id="" rows="4" minlength=6 maxlength=150 placeholder='overview' required></textarea>
-//   <input type="text" placeholder="poster_path" required>
-//   <input type="number" placeholder="popularity" required>
-//   <input type="date" placeholder="release_date" required>
-//   <select id="genres" multiple>
-
-//   </select>
-//   <input type="number" placeholder="vote_average" required>
-//   <input type="number" placeholder="vote_count" required>
-//   <input type="checkbox" id='adult' checked>
-//   <label for="adult">Adult</label>
-//   <div class='btn-action'>
-//     <input type="submit" value='Add'>
-//     <input type="reset" value="Clear">
-//   </div>
-
-// </form>
