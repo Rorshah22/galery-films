@@ -14,7 +14,7 @@ const Pagination = () => {
 
   // заглушка пагинации
   const startArr = ['start', 'prev'];
-  const endArr = ['end', 'next'];
+  const endArr = ['next', 'end'];
   const newPages = startArr.concat(pages, endArr);
   const classStyle = (currentPage, page) => {
     if (page === 'start') {
@@ -33,6 +33,22 @@ const Pagination = () => {
     return currentPage === page ? 'page-btn active' : 'page-btn';
   };
 
+  const disableBtn = (currentPage, page) => {
+    let disabled = false;
+    if (currentPage === 1 && page === 'start') {
+      return (disabled = true);
+    }
+    if (currentPage === 1 && page === 'prev') {
+      return (disabled = true);
+    }
+    if (currentPage === 15 && page === 'next') {
+      return (disabled = true);
+    }
+    if (currentPage === 15 && page === 'end') {
+      return (disabled = true);
+    }
+  };
+
   return (
     <div className="pagination-buttons">
       {newPages.map((page, index) => {
@@ -40,7 +56,15 @@ const Pagination = () => {
           <button
             key={index}
             className={classStyle(currentPage, page)}
-            onClick={() => dispatch(setPage(page))}
+            onClick={() => {
+              if (page === 'start') page = 1;
+              if (page === 'end') page = 15;
+              if (page === 'prev') page = currentPage - 1;
+              if (page === 'next') page = currentPage + 1;
+
+              return dispatch(setPage(page));
+            }}
+            disabled={disableBtn(currentPage, page)}
           >
             {page}
           </button>

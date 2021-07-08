@@ -1,7 +1,7 @@
 import { LOGIN, IS_AUTHENTICATION, IS_ADMIN } from '../constants';
 
 const initialState = {
-  login: '',
+  login: '2',
   isAdmin: false,
   isAuth: false,
 };
