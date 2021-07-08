@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import noImage from '../images/content/unnamed.jpg';
+import { setDeleteFilm } from '../store/actions';
 
 const Film = ({ item }) => {
+  const dispatch = useDispatch();
+
   const { isAdmin } = useSelector((state) => state.auth);
 
   const image = item.poster_path,
@@ -18,6 +21,10 @@ const Film = ({ item }) => {
     linkImage = noImage;
   }
 
+  const handleClickDelFilm = () => {
+    dispatch(setDeleteFilm(item));
+  };
+
   return (
     <div className="card-film">
       <div className="vote" hidden>
@@ -32,7 +39,9 @@ const Film = ({ item }) => {
         </Link>
         <figcaption>{title}</figcaption>
       </figure>
-      {isAdmin ? <button className="btn-del"></button> : null}
+      {isAdmin ? (
+        <button className="btn-del" onClick={handleClickDelFilm}></button>
+      ) : null}
     </div>
   );
 };

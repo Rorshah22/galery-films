@@ -1,4 +1,9 @@
-import { IS_LOADING_GALLERY, LOAD_GALLERY } from '../constants';
+import {
+  IS_LOADING_GALLERY,
+  LOAD_GALLERY,
+  ADD_FILM,
+  DELETE_FILM,
+} from '../constants';
 
 const initialState = {
   isLoaded: false,
@@ -17,6 +22,17 @@ const galleryReducer = (state = initialState, action) => {
         ...state,
         data: action.payload,
       };
+    case ADD_FILM:
+      return {
+        ...state,
+        data: [...state.data, action.payload],
+      };
+    case DELETE_FILM:
+      return {
+        ...state,
+        data: state.data.filter((item) => item !== action.payload),
+      };
+
     default:
       return state;
   }

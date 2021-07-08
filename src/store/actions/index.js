@@ -9,6 +9,8 @@ import {
   PASSWORD,
   IS_AUTHENTICATION,
   IS_ADMIN,
+  ADD_FILM,
+  DELETE_FILM,
 } from '../constants';
 
 import { getGallery, getGenres } from '../../services';
@@ -40,6 +42,16 @@ export const setPage = (page) => ({
 
 export const setSort = (value) => ({
   type: SORT,
+  payload: value,
+});
+
+export const setAddFilm = (page) => ({
+  type: ADD_FILM,
+  payload: page,
+});
+
+export const setDeleteFilm = (value) => ({
+  type: DELETE_FILM,
   payload: value,
 });
 
