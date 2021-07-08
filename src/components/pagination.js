@@ -12,41 +12,25 @@ const Pagination = () => {
 
   createPages(pages, pagesCount, currentPage);
 
-  // заглушка пагинации
   const startArr = ['start', 'prev'];
   const endArr = ['next', 'end'];
   const newPages = startArr.concat(pages, endArr);
-  const classStyle = (currentPage, page) => {
-    if (page === 'start') {
-      return 'page-btn start-page';
-    }
-    if (page === 'prev') {
-      return 'page-btn prev-page';
-    }
-    if (page === 'end') {
-      return 'page-btn end-page';
-    }
-    if (page === 'next') {
-      return 'page-btn next-page';
-    }
 
+  const classStyle = (currentPage, page) => {
+    if (page === 'start') return 'page-btn start-page';
+    if (page === 'prev') return 'page-btn prev-page';
+    if (page === 'end') return 'page-btn end-page';
+    if (page === 'next') return 'page-btn next-page';
     return currentPage === page ? 'page-btn active' : 'page-btn';
   };
 
   const disableBtn = (currentPage, page) => {
     let disabled = false;
-    if (currentPage === 1 && page === 'start') {
-      return (disabled = true);
-    }
-    if (currentPage === 1 && page === 'prev') {
-      return (disabled = true);
-    }
-    if (currentPage === 15 && page === 'next') {
-      return (disabled = true);
-    }
-    if (currentPage === 15 && page === 'end') {
-      return (disabled = true);
-    }
+    if (currentPage === 1 && page === 'start') return (disabled = true);
+    if (currentPage === 1 && page === 'prev') return (disabled = true);
+    if (currentPage === 15 && page === 'next') return (disabled = true);
+    // eslint-disable-next-line no-unused-vars
+    if (currentPage === 15 && page === 'end') return (disabled = true);
   };
 
   return (
@@ -61,7 +45,6 @@ const Pagination = () => {
               if (page === 'end') page = 15;
               if (page === 'prev') page = currentPage - 1;
               if (page === 'next') page = currentPage + 1;
-
               return dispatch(setPage(page));
             }}
             disabled={disableBtn(currentPage, page)}

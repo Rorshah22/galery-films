@@ -25,7 +25,7 @@ const galleryReducer = (state = initialState, action) => {
     case ADD_FILM:
       return {
         ...state,
-        data: [...state.data, action.payload],
+        data: [action.payload, ...state.data],
       };
     case DELETE_FILM:
       return {

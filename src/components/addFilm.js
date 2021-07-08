@@ -22,7 +22,7 @@ const AddFilm = () => {
     },
     onSubmit: (values) => {
       dispatch(setAddFilm(values));
-      alert('fd');
+      alert('film add');
     },
   });
   return (
@@ -36,8 +36,8 @@ const AddFilm = () => {
         <select id="genres" multiple></select>
         <input type="number" placeholder="vote_average" required />
         <input type="number" placeholder="vote_count" required />
-        <input type="checkbox" id="adult" checked />
-        <label for="adult">Adult</label>
+        <input type="checkbox" id="adult" />
+        <label htmlFor="adult">Adult</label>
         <div className="btn-action">
           <input type="submit" value="Add" />
           <input type="reset" value="Clear" />
