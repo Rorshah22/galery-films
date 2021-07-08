@@ -13,12 +13,12 @@ import {
 
 import { getGallery, getGenres } from '../../services';
 
-export const isAuth = (value) => ({
+export const setAuth = (value) => ({
   type: IS_AUTHENTICATION,
   payload: value,
 });
 
-export const isAdmin = (value) => ({
+export const setAdmin = (value) => ({
   type: IS_ADMIN,
   payload: value,
 });

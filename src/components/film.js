@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import noImage from '../images/content/unnamed.jpg';
 
 const Film = ({ item }) => {
+  const { isAdmin } = useSelector((state) => state.auth);
+
   const image = item.poster_path,
     title = item.title,
     vote = item.vote_average,
@@ -29,6 +32,7 @@ const Film = ({ item }) => {
         </Link>
         <figcaption>{title}</figcaption>
       </figure>
+      {isAdmin ? <button className="btn-del"></button> : null}
     </div>
   );
 };

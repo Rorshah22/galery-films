@@ -1,13 +1,13 @@
 import { LOGIN, PASSWORD, IS_AUTHENTICATION, IS_ADMIN } from '../constants';
 
 const initialState = {
-  login: '',
+  login: 'Name',
   password: '',
-  isAdmin: false,
-  isAuth: false,
+  isAdmin: true,
+  isAuth: true,
 };
 
-const authReduser = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
       return {
@@ -34,4 +34,4 @@ const authReduser = (state = initialState, action) => {
   }
 };
 
-export default authReduser;
+export default authReducer;

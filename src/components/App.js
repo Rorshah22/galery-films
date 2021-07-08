@@ -10,10 +10,11 @@ const App = () => {
 
   const { currentPage } = useSelector((state) => state.page);
   const { sort } = useSelector((state) => state.sort);
+  const { isAdmin } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(loadGallery(currentPage, sort));
-  }, [currentPage, sort, dispatch]);
+  }, [currentPage, sort, isAdmin, dispatch]);
 
   return (
     <div className="container">

@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import { setLogin, setAuth, setAdmin } from '../store/actions';
 const users = require('../dummy_data/users.json');
 
 const Authentication = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const { handleChange, handleSubmit, values, touched, errors } = useFormik({
     initialValues: {
       email: '',
@@ -22,12 +27,26 @@ const Authentication = () => {
       const mail = values.email;
       const pass = values.password;
 
-      const res = users.map(
-        (item) => item.email === mail && item.password === pass
-      );
-      console.log(res);
+      users.forEach((item) => {
+        if (item.email === mail && item.password === pass) {
+          dispatch(setLogin(item.name));
+          dispatch(setAuth(true));
+          dispatch(setAdmin(false));
+          history.push('/');
+          if (item.role === 'admin') {
+            dispatch(setAdmin(true));
+          }
+          alert('12<');
+          // return;
+        } else {
+          dispatch(setLogin(''));
+          dispatch(setAuth(false));
+          dispatch(setAdmin(false));
+        }
+      });
     },
   });
+
   // console.log(users);
   return (
     <div className="modal_block">
@@ -53,6 +72,7 @@ const Authentication = () => {
         {touched.password && errors.password ? (
           <div>{errors.password}</div>
         ) : null}
+
         <button className="btn-sign" type="submit">
           Sign
         </button>

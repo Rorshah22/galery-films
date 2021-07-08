@@ -1,5 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Gallery from './gallery';
 import ChangeRating from './changeRating';
@@ -11,21 +11,20 @@ import Authentication from './authentication';
 import Registration from './registration';
 
 const Main = () => {
-  // const { isAuth } = useSelector((state) => state.auth);
+  const { isAuth } = useSelector((state) => state.auth);
   return (
     <main>
       <Switch>
         <Route path="/" exact>
-          <section className="section-select">
-            <ChangeRating />
-          </section>
+          <ChangeRating />
+
           <Gallery />
           <Pagination />
         </Route>
         <Route path="/movie/:id" exact>
           <FilmInfo />
         </Route>
-        <Route path="/admin" exact>
+        <Route path="/admin" exact isAuth={isAuth}>
           <AddFilm />
         </Route>
         <Route path="/auth">
