@@ -22,8 +22,16 @@ const composeEnhancers =
       })
     : compose;
 
+const persistedState = localStorage.getItem('reduxState')
+  ? JSON.parse(localStorage.getItem('reduxState'))
+  : {};
+
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-const store = createStore(rootReducer, enhancer);
+const store = createStore(rootReducer, persistedState, enhancer);
+
+store.subscribe(() => {
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+});
 
 export default store;

@@ -31,23 +31,15 @@ const Authentication = () => {
         if (item.email === mail && item.password === pass) {
           dispatch(setLogin(item.name));
           dispatch(setAuth(true));
-          dispatch(setAdmin(false));
           history.push('/');
           if (item.role === 'admin') {
             dispatch(setAdmin(true));
           }
-          alert('12<');
-          // return;
-        } else {
-          dispatch(setLogin(''));
-          dispatch(setAuth(false));
-          dispatch(setAdmin(false));
         }
       });
     },
   });
 
-  // console.log(users);
   return (
     <div className="modal_block">
       <form className="modal-form" onSubmit={handleSubmit}>

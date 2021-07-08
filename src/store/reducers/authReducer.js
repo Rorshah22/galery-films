@@ -1,10 +1,9 @@
-import { LOGIN, PASSWORD, IS_AUTHENTICATION, IS_ADMIN } from '../constants';
+import { LOGIN, IS_AUTHENTICATION, IS_ADMIN } from '../constants';
 
 const initialState = {
-  login: 'Name',
-  password: '',
-  isAdmin: true,
-  isAuth: true,
+  login: '',
+  isAdmin: false,
+  isAuth: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -14,11 +13,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         login: action.payload,
       };
-    case PASSWORD:
-      return {
-        ...state,
-        password: action.payload,
-      };
+
     case IS_ADMIN:
       return {
         ...state,

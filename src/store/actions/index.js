@@ -6,7 +6,6 @@ import {
   PAGE,
   SORT,
   LOGIN,
-  PASSWORD,
   IS_AUTHENTICATION,
   IS_ADMIN,
   ADD_FILM,
@@ -27,11 +26,6 @@ export const setAdmin = (value) => ({
 
 export const setLogin = (value) => ({
   type: LOGIN,
-  payload: value,
-});
-
-export const setPassword = (value) => ({
-  type: PASSWORD,
   payload: value,
 });
 
