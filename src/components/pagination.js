@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+
+// import { Link } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
+
 import { setPage } from '../store/actions';
-import { loadGallery } from '../store/actions';
 import { createPages } from './pageCreator';
 
 const Pagination = () => {
@@ -10,27 +12,51 @@ const Pagination = () => {
 
   const pagesCount = 15;
   const pages = [];
-  console.log(currentPage);
+
   createPages(pages, pagesCount, currentPage);
 
-  useEffect(() => {
-    dispatch(loadGallery(currentPage));
-  }, [currentPage, dispatch]);
+  const startArr = ['start', 'prev'];
+  const endArr = ['next', 'end'];
+  const newPages = startArr.concat(pages, endArr);
+
+  const classStyle = (currentPage, page) => {
+    if (page === 'start') return 'page-btn start-page';
+    if (page === 'prev') return 'page-btn prev-page';
+    if (page === 'end') return 'page-btn end-page';
+    if (page === 'next') return 'page-btn next-page';
+    return currentPage === page ? 'page-btn active' : 'page-btn';
+  };
+
+  const disableBtn = (currentPage, page) => {
+    let disabled = false;
+    if (currentPage === 1 && page === 'start') return (disabled = true);
+    if (currentPage === 1 && page === 'prev') return (disabled = true);
+    if (currentPage === 15 && page === 'next') return (disabled = true);
+    // eslint-disable-next-line no-unused-vars
+    if (currentPage === 15 && page === 'end') return (disabled = true);
+  };
 
   return (
     <div className="pagination-buttons">
-      {pages.map((page, index) => {
+      {newPages.map((page, index) => {
         return (
           <button
             key={index}
-            className={+currentPage === page ? 'page-btn active' : 'page-btn'}
-            // onClick={handleClick}
-            onClick={() => dispatch(setPage(page))}
+            className={classStyle(currentPage, page)}
+            onClick={() => {
+              if (page === 'start') page = 1;
+              if (page === 'end') page = 15;
+              if (page === 'prev') page = currentPage - 1;
+              if (page === 'next') page = currentPage + 1;
+              return dispatch(setPage(page));
+            }}
+            disabled={disableBtn(currentPage, page)}
           >
             {page}
           </button>
         );
       })}
+      {/* <Link to={`/page/${currentPage}`}></Link> */}
     </div>
   );
 };

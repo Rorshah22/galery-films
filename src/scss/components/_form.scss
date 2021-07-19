@@ -21,15 +21,15 @@
   flex-direction: column;
   position: relative;
   margin: auto;
-  width: 757px;
+  max-width: 757px;
   height: 300px;
-  background-color: #fff;
 }
 .modal-form {
   display: flex;
   // position: fixed;
   flex-direction: column;
   z-index: 99;
+  width: 50%;
   // position: absolute;
 }
 .close-btn {

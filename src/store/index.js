@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import genresReducer from './reducers/genresReducer';
 import galleryReducer from './reducers/galleryReducer';
 import pageReducer from './reducers/pageReducer';
+import sortFilmReducer from './reducers/sortFilmReducer';
+import authReducer from './reducers/authReducer';
 
 import thunk from 'redux-thunk';
 
@@ -9,6 +11,8 @@ const rootReducer = combineReducers({
   genres: genresReducer,
   gallery: galleryReducer,
   page: pageReducer,
+  sort: sortFilmReducer,
+  auth: authReducer,
 });
 
 const composeEnhancers =
@@ -18,18 +22,16 @@ const composeEnhancers =
       })
     : compose;
 
-const enhancer = composeEnhancers(
-  applyMiddleware(thunk)
-  // other store enhancers if any
-);
+const persistedState = localStorage.getItem('reduxState')
+  ? JSON.parse(localStorage.getItem('reduxState'))
+  : {};
 
-// const store = createStore(
-//   rootReducer,
-//   compose(
-//     applyMiddleware(thunk),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-//   )
-// );
-const store = createStore(rootReducer, enhancer);
+const enhancer = composeEnhancers(applyMiddleware(thunk));
+
+const store = createStore(rootReducer, persistedState, enhancer);
+
+store.subscribe(() => {
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+});
 
 export default store;
