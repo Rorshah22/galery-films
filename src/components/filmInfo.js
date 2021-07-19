@@ -1,8 +1,6 @@
-// import { useSelector } from 'react-redux';
-
 import { useEffect } from 'react';
 import noImage from '../images/content/unnamed.jpg';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { loadGenres } from '../store/actions';
@@ -23,6 +21,8 @@ const FilmInfo = () => {
   const { isAdmin } = useSelector((state) => state.auth);
 
   let info = data.find((item) => item.id === +id);
+
+  document.title = info.title;
 
   let linkImage = '';
   if (info !== undefined && info.poster_path !== null) {
@@ -46,19 +46,22 @@ const FilmInfo = () => {
   const handleClickDelFilm = () => {
     dispatch(setDeleteFilm(info));
     history.push('/');
-    console.log(info);
   };
 
-  const handleClickChangeFilm = () => {
-    return;
-  };
-
+  // document.body.style.background = `linear-gradient(to right,
+  //   rgba(19, 38, 47, 0.925) 0%,
+  //   rgba(9, 28, 37, 0.925) 100%),
+  //   url(https://image.tmdb.org/t/p/original${info.backdrop_path})
+  //    `;
+  // document.body.style.backgroundRepeat = 'no-repeat';
+  // document.body.style.backgroundSize = 'cover';
   const element = (
     <div className="info-page">
       {isAdmin ? (
         <div>
           <button className="btn-del" onClick={handleClickDelFilm}></button>
-          <button className="btn-edit" onClick={handleClickChangeFilm}></button>
+
+          <Link className="btn-edit" to={`/change-film/${info.id}`}></Link>
         </div>
       ) : null}
       <img className="poster" src={linkImage} alt="poster " />

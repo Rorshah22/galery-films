@@ -24,7 +24,7 @@ const ChangeRating = () => {
         </option>
         <option value="release_date.asc">Release Date Ascending &#8593;</option>
       </select>
-      {isAdmin ? <Link className="btn-add" to="/add_film"></Link> : null}
+      {isAdmin ? <Link className="btn-add" to="/add-film"></Link> : null}
     </section>
   );
 };

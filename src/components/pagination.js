@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+// import { Link } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
+
 import { setPage } from '../store/actions';
 import { createPages } from './pageCreator';
 
@@ -53,6 +56,7 @@ const Pagination = () => {
           </button>
         );
       })}
+      {/* <Link to={`/page/${currentPage}`}></Link> */}
     </div>
   );
 };

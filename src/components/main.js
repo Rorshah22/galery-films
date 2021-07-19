@@ -10,23 +10,32 @@ import AddFilm from './addFilm';
 import Authentication from './authentication';
 import Registration from './registration';
 import PrivateRouter from './PrivateRoute/PrivateRoute';
+import ChangeFilm from './ChangeFilm';
 
 const Main = () => {
   const { isAdmin } = useSelector((state) => state.auth);
+  // const { currentPage } = useSelector((state) => state.page);
   return (
     <main>
       <Switch>
         <Route path="/" exact>
           <ChangeRating />
-
           <Gallery />
           <Pagination />
         </Route>
+        {/* <Route path="/page/:page" exact>
+          <ChangeRating />
+          <Gallery />
+          <Pagination />
+        </Route> */}
         <Route path="/movie/:id" exact>
           <FilmInfo />
         </Route>
-        <PrivateRouter path="/add_film" exact isAdmin={isAdmin}>
+        <PrivateRouter path="/add-film" exact isAdmin={isAdmin}>
           <AddFilm />
+        </PrivateRouter>
+        <PrivateRouter path="/change-film/:id" exact isAdmin={isAdmin}>
+          <ChangeFilm />
         </PrivateRouter>
         <Route path="/auth">
           <Authentication />

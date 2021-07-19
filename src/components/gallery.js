@@ -5,6 +5,8 @@ import Preloader from './preloader';
 import Film from './film';
 
 const Gallery = () => {
+  document.title = 'The movie gallery';
+
   const { data, isLoaded } = useSelector((state) => state.gallery);
 
   const element = data.map((item) => {
