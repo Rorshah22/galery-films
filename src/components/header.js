@@ -6,6 +6,7 @@ import { setAuth, setAdmin } from '../store/actions';
 const Header = () => {
   const dispatch = useDispatch();
 
+  const { lang } = useSelector((state) => state.lang);
   const { login, isAuth } = useSelector((state) => state.auth);
 
   // TODO сделать подтверждение выхода
@@ -14,6 +15,18 @@ const Header = () => {
     dispatch(setAuth(false));
     dispatch(setAdmin(false));
   };
+
+  const authBtn = {
+    ru: {
+      logOut: 'Выйти',
+      sign: 'Войти/Регистрация',
+    },
+    us: {
+      logOut: 'LogOut',
+      sign: 'Sign in/Sign up',
+    },
+  };
+  const ch = lang === 'ru-RU' ? authBtn.ru : authBtn.us;
 
   return (
     <header className="header">
@@ -24,12 +37,12 @@ const Header = () => {
         <div style={{ display: 'flex' }}>
           <span className="user-name">{login}</span>
           <button className="sign-up" onClick={handleClick}>
-            LogOut
+            {ch.logOut}
           </button>
         </div>
       ) : (
         <Link to="/auth" className="sign-up">
-          Sign in/Sign up
+          {ch.sign}
         </Link>
       )}
     </header>

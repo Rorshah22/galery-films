@@ -3,7 +3,7 @@ import noImage from '../images/content/unnamed.jpg';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { loadGenres } from '../store/actions';
+import { loadGenres } from '../store/middleware';
 import { setDeleteFilm } from '../store/actions';
 import Preloader from './preloader';
 

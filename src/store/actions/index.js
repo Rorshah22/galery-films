@@ -1,8 +1,6 @@
 import {
   IS_LOADING_GALLERY,
-  LOAD_GALLERY,
   IS_LOADING_GENRES,
-  LOAD_GENRES,
   PAGE,
   SORT,
   LOGIN,
@@ -10,9 +8,8 @@ import {
   IS_ADMIN,
   ADD_FILM,
   DELETE_FILM,
+  LANG
 } from '../constants';
-
-import { getGallery, getGenres } from '../../services';
 
 export const setAuth = (value) => ({
   type: IS_AUTHENTICATION,
@@ -59,20 +56,7 @@ export const setIsLoadingGenres = (value) => ({
   payload: value,
 });
 
-export const loadGallery = (page, sort) => (dispatch) => {
-  dispatch(setIsLoadingGallery(true));
-  getGallery(page, sort)
-    .then((data) => {
-      dispatch({ type: LOAD_GALLERY, payload: data.results });
-    })
-    .then(() => dispatch(setIsLoadingGallery(false)));
-};
-
-export const loadGenres = () => (dispatch) => {
-  dispatch(setIsLoadingGenres(true));
-  getGenres()
-    .then((data) => {
-      dispatch({ type: LOAD_GENRES, payload: data.genres });
-    })
-    .then(() => dispatch(setIsLoadingGenres(false)));
-};
+export const setLang = (value) => ({
+  type: LANG,
+  payload: value,
+});
