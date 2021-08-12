@@ -30,31 +30,31 @@ const ChangeRating = () => {
     dispatch(setSort(e.target.value));
     dispatch(setPage(1));
   };
-  const handleChangeRu = (e) => {
+  const handleChangeRu = () => {
     dispatch(setLang('ru-RU'));
   };
-  const handleChangeEng = (e) => {
-    dispatch(setLang('us-US'));
+  const handleChangeEng = () => {
+    dispatch(setLang('en-US'));
   };
 
   return (
-    <section className="section-select">
-      <select className="select" onChange={handleChange} value={sort}>
+    <section className='section-select'>
+      <select className='select' onChange={handleChange} value={sort}>
         {/* {lang === 'ru-RU' ? changeShort.ru : changeShort.us} */}
-        <option value="popularity.desc" defaultValue>
+        <option value='popularity.desc' defaultValue>
           {ch.popularity}
         </option>
-        <option value="vote_average.desc"> {ch.voteAverageDesc} &#8595;</option>
-        <option value="vote_average.asc">{ch.voteAverageAsc} &#8593;</option>
-        <option value="release_date.desc">{ch.releaseDateDesc} &#8595;</option>
-        <option value="release_date.asc">{ch.releaseDateAsc} &#8593;</option>
+        <option value='vote_average.desc'> {ch.voteAverageDesc} &#8595;</option>
+        <option value='vote_average.asc'>{ch.voteAverageAsc} &#8593;</option>
+        <option value='release_date.desc'>{ch.releaseDateDesc} &#8595;</option>
+        <option value='release_date.asc'>{ch.releaseDateAsc} &#8593;</option>
       </select>
-      {isAdmin ? <Link className="btn-add" to="/add-film"></Link> : null}
+      {isAdmin ? <Link className='btn-add' to='/add-film'> </Link> : null}
       <div>
-        <button className="btn-lang" onClick={handleChangeRu}>
+        <button className='btn-lang' onClick={handleChangeRu}>
           RU
         </button>
-        <button className="btn-lang" onClick={handleChangeEng}>
+        <button className='btn-lang' onClick={handleChangeEng}>
           ENG
         </button>
       </div>

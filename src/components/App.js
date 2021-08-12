@@ -18,7 +18,7 @@ const App = () => {
   }, [currentPage, sort, isAdmin, lang, dispatch]);
 
   return (
-    <div className="container">
+    <div className='container'>
       <Header />
       <Main />
     </div>

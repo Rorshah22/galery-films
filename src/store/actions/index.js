@@ -8,7 +8,7 @@ import {
   IS_ADMIN,
   ADD_FILM,
   DELETE_FILM,
-  LANG
+  LANG,
 } from '../constants';
 
 export const setAuth = (value) => ({

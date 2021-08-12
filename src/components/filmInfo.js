@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import noImage from '../images/content/unnamed.jpg';
+// import noImage from '../images/content/unnamed.jpg';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -7,87 +7,115 @@ import { loadGenres } from '../store/middleware';
 import { setDeleteFilm } from '../store/actions';
 import Preloader from './preloader';
 
+import noImage from '../images/content/unnamed.jpg';
+
 const FilmInfo = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const history = useHistory();
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  useEffect(() => {
-    dispatch(loadGenres());
-  }, [dispatch]);
+    useEffect(() => {
+      dispatch(loadGenres());
+    }, [dispatch]);
 
-  const { data, isLoaded } = useSelector((state) => state.gallery);
-  const { genre } = useSelector((state) => state.genres);
-  const { isAdmin } = useSelector((state) => state.auth);
+    const { data, isLoaded } = useSelector((state) => state.gallery);
+    const { genre } = useSelector((state) => state.genres);
+    const { isAdmin } = useSelector((state) => state.auth);
+    const { lang } = useSelector((state) => state.lang);
 
-  let info = data.find((item) => item.id === +id);
+    let info = data.find((item) => item.id === +id);
 
-  document.title = info.title;
+    const infoFilm = () => {
+      const changeLangInfo = {
+        ru: {
+          genres: 'Жанры',
+          voteAverage: 'Среднее количество голосов',
+          voteCount: 'Общее количество голосов',
+          popularity: 'Популярность',
+          releaseDate: 'Дата выхода',
+        },
+        us: {
+          genres: 'Genres',
+          voteAverage: 'Vote average',
+          voteCount: 'Vote count',
+          popularity: 'Popularity',
+          releaseDate: 'Release date',
+        },
+      };
+      return lang === 'ru-RU' ? changeLangInfo.ru : changeLangInfo.us;
+    };
 
-  let linkImage = '';
-  if (info !== undefined && info.poster_path !== null) {
-    linkImage = `https://image.tmdb.org/t/p/w500${info.poster_path}`;
-  } else {
-    linkImage = noImage;
-  }
-  let arrGenres = [];
 
-  for (let j = 0; j < info.genre_ids.length; j++) {
-    const element = info.genre_ids[j];
-    // eslint-disable-next-line
-    genre.find((item) => {
-      if (element === item.id) {
-        arrGenres.push(item.name);
+    document.title = info.title;
+
+    const getPosterFilm = () => {
+      let linkImage;
+      if (info.poster_path !== null) {
+        linkImage = `https://image.tmdb.org/t/p/w500${info.poster_path}`;
+      } else {
+        linkImage = noImage;
       }
-    });
-  }
-  const genres = arrGenres.join(', ');
+      return linkImage;
+    };
 
-  const handleClickDelFilm = () => {
-    dispatch(setDeleteFilm(info));
-    history.push('/');
-  };
+    const getGenres = () => {
+      let arrGenres = [];
 
-  // document.body.style.background = `linear-gradient(to right,
-  //   rgba(19, 38, 47, 0.925) 0%,
-  //   rgba(9, 28, 37, 0.925) 100%),
-  //   url(https://image.tmdb.org/t/p/original${info.backdrop_path})
-  //    `;
-  // document.body.style.backgroundRepeat = 'no-repeat';
-  // document.body.style.backgroundSize = 'cover';
-  const element = (
-    <div className="info-page">
-      {isAdmin ? (
-        <div>
-          <button className="btn-del" onClick={handleClickDelFilm}></button>
+      for (let j = 0; j < info.genre_ids.length; j++) {
+        const element = info.genre_ids[j];
+        genre.find((item) => {
+          return element === item.id ? arrGenres.push(item.name) : null;
+        });
+      }
 
-          <Link className="btn-edit" to={`/change-film/${info.id}`}></Link>
+      return arrGenres.join(', ');
+    };
+
+    const genres = getGenres();
+
+    const handleClickDelFilm = () => {
+      dispatch(setDeleteFilm(info));
+      history.push('/');
+    };
+
+    const element = (
+      <div className='info-page'>
+        {isAdmin ? (
+          <div>
+            <button
+              className='btn-del'
+              onClick={handleClickDelFilm}>
+            </button>
+            <Link className='btn-edit'
+                  to={`/change-film/${info.id}`}>
+            </Link>
+          </div>
+        ) : null}
+        <img className='poster' src={getPosterFilm()} alt='poster ' />
+        <div className='info-film'>
+          <h2>{info.title}</h2>
+          <p>{info.overview}</p>
+          <span>
+          <b>{infoFilm().genres}: </b> {genres}
+        </span>
+          <span>
+          <b>{infoFilm().voteAverage}:</b> {info.vote_average}
+        </span>
+          <span>
+          <b>{infoFilm().voteCount}:</b> {info.vote_count}
+        </span>
+          <span>
+          <b>{infoFilm().popularity}:</b> {info.popularity}
+        </span>
+          <span>
+          <b>{infoFilm().releaseDate}:</b> {info.release_date}
+        </span>
         </div>
-      ) : null}
-      <img className="poster" src={linkImage} alt="poster " />
-      <div className="info-film">
-        <h2>{info.title}</h2>
-        <p>{info.overview}</p>
-        <span>
-          <b>Genres: </b> {genres}
-        </span>
-        <span>
-          <b>Vote average:</b> {info.vote_average}
-        </span>
-        <span>
-          <b>Vote count:</b> {info.vote_count}
-        </span>
-        <span>
-          <b>Popularity,:</b> {info.popularity}
-        </span>
-        <span>
-          <b>Release date:</b> {info.release_date}
-        </span>
       </div>
-    </div>
-  );
+    );
 
-  return isLoaded ? <Preloader /> : element;
-};
+    return isLoaded ? <Preloader /> : element;
+  }
+;
 
 export default FilmInfo;

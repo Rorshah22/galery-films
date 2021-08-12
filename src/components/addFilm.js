@@ -25,25 +25,27 @@ const AddFilm = () => {
       alert('film add');
     },
   });
+
   return (
-    <div className="modal_block">
-      <form className="add-film" onSubmit={formik.handleSubmit}>
-        <input type="text" placeholder="title" required />
-        <textarea name="" id="" rows="4" placeholder="overview" required />
-        <input type="text" placeholder="poster_path" required />
-        <input type="number" placeholder="popularity" required />
-        <input type="date" placeholder="release_date" required />
-        <select id="genres" multiple></select>
-        <input type="number" placeholder="vote_average" required />
-        <input type="number" placeholder="vote_count" required />
-        <input type="checkbox" id="adult" />
-        <label htmlFor="adult">Adult</label>
-        <div className="btn-action">
-          <input type="submit" value="Add" />
-          <input type="reset" value="Clear" />
+    <div className='modal_block'>
+      <form className='add-film' onSubmit={formik.handleSubmit}>
+        <input type='text' placeholder='title' required />
+        <textarea name='' id='' rows='4' placeholder='overview' required />
+        <input type='text' placeholder='poster_path' required />
+        <input type='number' placeholder='popularity' required />
+        <input type='date' placeholder='release_date' required />
+        <select id='genres' multiple> </select>
+        <input type='number' placeholder='vote_average' required />
+        <input type='number' placeholder='vote_count' required />
+        <input type='checkbox' id='adult' />
+        <label htmlFor='adult'>Adult</label>
+        <div className='btn-action'>
+          <input type='submit' value='Add' />
+          <input type='reset' value='Clear' />
         </div>
       </form>
     </div>
   );
 };
+
 export default AddFilm;
