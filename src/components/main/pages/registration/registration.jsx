@@ -26,7 +26,7 @@ const Registration = () => {
         .required(),
       confirmPassword: Yup.string().oneOf(
         [Yup.ref('password'), null],
-        'Passwords must match'
+        'Passwords must match',
       ),
     }),
 
@@ -36,14 +36,14 @@ const Registration = () => {
   });
 
   return (
-    <div class="modal_block">
+    <div className="modal_block">
       <form className="modal-form" onSubmit={handleSubmit}>
         <label htmlFor="name">Enter you name</label>
         <input
           id="user_name"
           name="firstName"
           type="name"
-          minlength="6"
+          minLength="6"
           placeholder="Name"
           onChange={handleChange}
           value={values.firstName}
@@ -53,7 +53,7 @@ const Registration = () => {
           id="user_surname"
           name="lastName"
           type="name"
-          minlength="6"
+          minLength="6"
           placeholder="Surname"
           onChange={handleChange}
           value={values.lastName}

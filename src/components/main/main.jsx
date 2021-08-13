@@ -18,7 +18,7 @@ const Main = () => {
   return (
     <main>
       <Switch>
-        <Route path='/' exact>
+        <Route path="/" exact>
           <ChangeRating />
           <Gallery />
           <Pagination />
@@ -28,19 +28,19 @@ const Main = () => {
           <Gallery />
           <pagination />
         </Route> */}
-        <Route path='/movie/:id' exact>
+        <Route path="/movie/:id" exact>
           <FilmInfo />
         </Route>
-        <PrivateRouter path='/add-film' exact isAdmin={isAdmin}>
+        <PrivateRouter path="/add-film" exact isAdmin={isAdmin}>
           <AddFilm />
         </PrivateRouter>
-        <PrivateRouter path='/change-film/:id' exact isAdmin={isAdmin}>
+        <PrivateRouter path="/change-film/:id" exact isAdmin={isAdmin}>
           <ChangeFilm />
         </PrivateRouter>
-        <Route path='/auth'>
+        <Route path="/auth">
           <Authentication />
         </Route>
-        <Route path='/registration'>
+        <Route path="/registration">
           <Registration />
         </Route>
         <NotFound />

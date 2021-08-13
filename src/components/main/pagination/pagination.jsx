@@ -32,12 +32,12 @@ const Pagination = () => {
     if (currentPage === 1 && page === 'start') return (disabled = true);
     if (currentPage === 1 && page === 'prev') return (disabled = true);
     if (currentPage === 15 && page === 'next') return (disabled = true);
-    // eslint-disable-next-line no-unused-vars
     if (currentPage === 15 && page === 'end') return (disabled = true);
+    return disabled;
   };
 
   return (
-    <div className='pagination-buttons'>
+    <div className="pagination-buttons">
       {newPages.map((page, index) => {
         return (
           <button
