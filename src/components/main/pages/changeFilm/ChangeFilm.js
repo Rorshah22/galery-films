@@ -15,16 +15,16 @@ const ChangeFilm = () => {
   };
 
   return (
-    <div className="main">
+    <div className='main'>
       <h1>Change film: {info.title}</h1>
-      <label htmlFor="title">Title: </label>
+      <label htmlFor='title'>Title: </label>
       <input
-        id="title"
+        id='title'
         onChange={handleChange}
         value={info.title}
         placeholder={info.title}
       />
-      {/* <h1>ChangeFilm id: {id}</h1>
+      {/* <h1>changeFilm id: {id}</h1>
      
           <input
             placeholder={el[1]}

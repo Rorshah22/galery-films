@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loadGallery } from '../store/middleware';
-import Header from './Header/header';
-import Main from './Main/main';
+import Header from './header/header';
+import Main from './main/main';
 
 const App = () => {
   const dispatch = useDispatch();

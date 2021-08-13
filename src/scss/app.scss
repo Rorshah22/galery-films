@@ -28,6 +28,7 @@ ul {
   padding: 0;
   list-style: none;
 }
+
 //reset style buttons
 button {
   background: none;
@@ -45,8 +46,10 @@ button {
   margin: 0 auto;
   padding: 40px 40px 0 40px;
 }
+
 .home-page {
   text-decoration: none;
+
   &::before {
     content: "";
     display: inline-block;
@@ -57,10 +60,11 @@ button {
     background-size: 40px;
   }
 }
-/* Header style */
+
+/* header style */
 @import "components/header";
 
-/* Main style */
+/* main style */
 @import "components/main";
 
 /* Buttons style */

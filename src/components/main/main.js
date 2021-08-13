@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import Gallery from './components/gallery/gallery';
 import ChangeRating from './components/changerating/changeRating';
 import FilmInfo from './components/filminfo/filmInfo';
-import Pagination from './Pagination/pagination';
-import NotFound from './Pages/Notfound/notfound';
-import AddFilm from './Pages/Addfilm/addFilm';
-import Authentication from './Pages/Authentication/authentication';
-import Registration from './Pages/Registration/registration';
+import Pagination from './pagination/pagination';
+import NotFound from './pages/notfound/notfound';
+import AddFilm from './pages/addfilm/addFilm';
+import Authentication from './pages/authentication/authentication';
+import Registration from './pages/registration/registration';
 import PrivateRouter from '../PrivateRoute/PrivateRoute';
-import ChangeFilm from './Pages/ChangeFilm/ChangeFilm';
+import ChangeFilm from './pages/changeFilm/ChangeFilm';
 
 const Main = () => {
   const { isAdmin } = useSelector((state) => state.auth);
@@ -26,7 +26,7 @@ const Main = () => {
         {/* <Route path="/page/:page" exact>
           <ChangeRating />
           <Gallery />
-          <Pagination />
+          <pagination />
         </Route> */}
         <Route path='/movie/:id' exact>
           <FilmInfo />
