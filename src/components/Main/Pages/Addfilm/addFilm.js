@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { setAddFilm } from '../store/actions';
+import { setAddFilm } from '../../../../store/actions';
 
 const AddFilm = () => {
   const dispatch = useDispatch();

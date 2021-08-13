@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setSort, setPage, setLang } from '../store/actions';
+import { setSort, setPage, setLang } from '../../../../store/actions';
 
 const ChangeRating = () => {
   const dispatch = useDispatch();

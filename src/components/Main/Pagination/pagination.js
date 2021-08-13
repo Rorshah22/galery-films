@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { useParams } from 'react-router-dom';
 
-import { setPage } from '../store/actions';
+import { setPage } from '../../../store/actions';
 import { createPages } from './pageCreator';
 
 const Pagination = () => {
@@ -37,7 +37,7 @@ const Pagination = () => {
   };
 
   return (
-    <div className="pagination-buttons">
+    <div className='pagination-buttons'>
       {newPages.map((page, index) => {
         return (
           <button

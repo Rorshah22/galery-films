@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { setLogin, setAuth, setAdmin } from '../store/actions';
-const users = require('../dummy_data/users.json');
+import { setLogin, setAuth, setAdmin } from '../../../../store/actions';
+
+const users = require('../../../../dummy_data/users.json');
 
 const Authentication = () => {
   const dispatch = useDispatch();
@@ -41,34 +42,34 @@ const Authentication = () => {
   });
 
   return (
-    <div className="modal_block">
-      <form className="modal-form" onSubmit={handleSubmit}>
-        <label htmlFor="email">Enter you email</label>
+    <div className='modal_block'>
+      <form className='modal-form' onSubmit={handleSubmit}>
+        <label htmlFor='email'>Enter you email</label>
         <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="email"
+          id='email'
+          name='email'
+          type='email'
+          placeholder='email'
           onChange={handleChange}
           value={values.email}
         />
         {touched.email && errors.email ? <div>{errors.email}</div> : null}
-        <label htmlFor="password">Enter you password</label>
+        <label htmlFor='password'>Enter you password</label>
         <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="Password"
+          id='password'
+          name='password'
+          type='password'
+          placeholder='Password'
           onChange={handleChange}
         />
         {touched.password && errors.password ? (
           <div>{errors.password}</div>
         ) : null}
 
-        <button className="btn-sign" type="submit">
+        <button className='btn-sign' type='submit'>
           Sign
         </button>
-        <Link className="btn-registration" to="/registration">
+        <Link className='btn-registration' to='/registration'>
           Registration
         </Link>
       </form>

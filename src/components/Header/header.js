@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setAuth, setAdmin } from '../store/actions';
+import { setAuth, setAdmin } from '../../store/actions';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -29,19 +29,19 @@ const Header = () => {
   const ch = lang === 'ru-RU' ? authBtn.ru : authBtn.us;
 
   return (
-    <header className="header">
-      <Link to="/" className="home-page">
+    <header className='header'>
+      <Link to='/' className='home-page'>
         {' '}
       </Link>
       {isAuth ? (
         <div style={{ display: 'flex' }}>
-          <span className="user-name">{login}</span>
-          <button className="sign-up" onClick={handleClick}>
+          <span className='user-name'>{login}</span>
+          <button className='sign-up' onClick={handleClick}>
             {ch.logOut}
           </button>
         </div>
       ) : (
-        <Link to="/auth" className="sign-up">
+        <Link to='/auth' className='sign-up'>
           {ch.sign}
         </Link>
       )}

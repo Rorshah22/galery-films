@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import noImage from '../images/content/unnamed.jpg';
-import { setDeleteFilm } from '../store/actions';
+import noImage from '../../../../images/content/unnamed.jpg';
+import { setDeleteFilm } from '../../../../store/actions';
 
 const Film = ({ item }) => {
   const dispatch = useDispatch();
@@ -26,21 +26,21 @@ const Film = ({ item }) => {
   };
 
   return (
-    <div className="card-film">
-      <div className="vote" hidden>
+    <div className='card-film'>
+      <div className='vote' hidden>
         {vote}
       </div>
-      <div className="date" hidden>
+      <div className='date' hidden>
         {date}
       </div>
       <figure>
         <Link to={`/movie/${item.id}`}>
-          <img className="poster" src={linkImage} alt={title} />
+          <img className='poster' src={linkImage} alt={title} />
         </Link>
         <figcaption>{title}</figcaption>
       </figure>
       {isAdmin ? (
-        <button className="btn-del" onClick={handleClickDelFilm}></button>
+        <button className='btn-del' onClick={handleClickDelFilm}></button>
       ) : null}
     </div>
   );

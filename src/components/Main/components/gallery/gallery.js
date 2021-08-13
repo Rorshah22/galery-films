@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import Preloader from './preloader';
+import Preloader from '../../../preloader/preloader';
 
-import Film from './film';
+import Film from '../film/film';
 
 const Gallery = () => {
   document.title = 'The movie gallery';
@@ -14,7 +14,7 @@ const Gallery = () => {
   });
 
   return (
-    <section className="galery-films">
+    <section className='galery-films'>
       {isLoaded ? <Preloader /> : element}
     </section>
   );
